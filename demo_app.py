@@ -8,7 +8,7 @@ import seaborn as sns
 with st.echo(code_location='below'):
 
     st.title("Netfix Movies and TVshows")
-    st.write("Данный дэшборд направлен на ознакомление с информацией о фильмах и сериалах размещенных на платформе Netflix. Для получения информации о рейтингах были так же задействоавны данные с IMDb.")
+    st.write("Данный дэшборд направлен на ознакомление с информацией о фильмах и сериалах размещенных на платформе Netflix. Для получения информации о рейтингах были также задействоавны данные с IMDb.")
     df = pd.read_csv("netflix_titles.csv")
     dg = pd.read_csv("IMDb ratings.csv")
     dh = pd.read_csv("IMDb movies.csv")
@@ -37,7 +37,7 @@ with st.echo(code_location='below'):
     c = list(plt.cm.colors.cnames.keys())[10:20]
     ###END FROM
 
-    st.title("Рейтинг топ 10 фильмов в зависимости от года выпуска.")
+
     st.write("Здесь вы можете выбрать год выпуска фильма в период от 1946 года до 2021(все имеющиеся актуальные данные на Netflix) и узнать наилучшие фильмы имеющиеся на "
              "этом сервисе.(лучше выбирать года попозже, а то старых фильмов там мало")
     fig, ax = plt.subplots()
@@ -162,7 +162,7 @@ with st.echo(code_location='below'):
     fig1, ax1 = plt.subplots()
 
     exlist = (0.2, 0.1, 0, 0, 0, 0, 0, 0, 0, 0)
-
+    st.title("Топ 10 популярных жанров")
     try:
         patches, texts = ax1.pie(datagenre['Movies with this genre'].tolist()[:10], colors=c, startangle=90,
                                  explode=exlist, shadow=True)
@@ -174,17 +174,18 @@ with st.echo(code_location='below'):
         st.pyplot(fig1)
     except NameError:
         pass
-    st.title("Для тех, кому интересно какие актеры сыграли в наибольшем количестве фильмов на Netflix можете глянуть, они также разделены на индусов и остальнйо мир")
+    st.title("Для тех, кому интересно, какие актеры сыграли в наибольшем количестве фильмов на Netflix можете глянуть, они также разделены на индусов и остальнйо мир")
+    st.write("Предоставлен топ 10")
     try:
         sns.set(font_scale=1)
-        f2, ax = plt.subplots(figsize=(6, 15))
-        colors_cw = sns.color_palette('magma', len(pogchamp['Times in movie'].tolist()[:10]))
+        fig2, ax = plt.subplots(figsize=(6, 15))
+        colors_cw = sns.color_palette('mako', len(pogchamp['Times in movie'].tolist()[:10]))
         sns.barplot(pogchamp['Times in movie'].tolist()[:10],pogchamp.index[:10], palette=colors_cw[::-1])
-        Text = ax.set(xlabel='nya ichi ni san', title='nya arigato')
-        st.pyplot(f2)
+        Text = ax.set(xlabel='Количество фильмов', title='Актеры')
+        st.pyplot(fig2)
     except NameError:
         pass
-
+    st.write("Если топ 10 для вас недостаточно, то снизу приведены все отсортированные данные для ознакомпления, стоит только нажать на кнопочку")
     if st.checkbox('Данные по жанрам'):
         st.write(datagenre)
     if st.checkbox("Данные по актерам"):
