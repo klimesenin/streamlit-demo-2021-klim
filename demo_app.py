@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import plotly.graph_objs as go
-import random
+
 
 with st.echo(code_location='below'):
 
@@ -32,10 +32,11 @@ with st.echo(code_location='below'):
 
     a = np.array(toptitle)
     b = np.array(toprate)
+    c = list(plt.cm.colors.cnames.keys())[:10]
     # СПИЗЖЕНО
-    n = toptitle.__len__() + 1
-    all_colors = list(plt.cm.colors.cnames.keys())
-    c = random.choices(all_colors, k=n)
+    #n = toptitle.__len__() + 1
+    #all_colors = list(plt.cm.colors.cnames.keys())
+    #c = random.choices(all_colors, k=n)
     # ЗАКОНЧИЛ ПИЗДИТЬ
     fig, ax = plt.subplots()
     ax.bar(a, b, color=c, width=0.5)
