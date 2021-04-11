@@ -175,12 +175,15 @@ with st.echo(code_location='below'):
     except NameError:
         pass
     st.title("Для тех, кому интересно какие актеры сыграли в наибольшем количестве фильмов на Netflix можете глянуть, они также разделены на индусов и остальнйо мир")
-    sns.set(font_scale=1)
-    f2, ax = plt.subplots(figsize=(10, 30))
-    colors_cw = sns.color_palette('magma', len(pogchamp['Times in movie'].tolist()))
-    sns.barplot(pogchamp.index, pogchamp['Times in movie'], palette=colors_cw[::-1])
-    Text = ax.set(xlabel='nya ichi ni san', title='nya arigato')
-    st.pyplot(f2)
+    try:
+        sns.set(font_scale=1)
+        f2, ax = plt.subplots(figsize=(10, 30))
+        colors_cw = sns.color_palette('magma', len(pogchamp['Times in movie'].tolist()))
+        sns.barplot(pogchamp.index, pogchamp['Times in movie'], palette=colors_cw[::-1])
+        Text = ax.set(xlabel='nya ichi ni san', title='nya arigato')
+        st.pyplot(f2)
+    except NameError:
+        pass
     if st.checkbox('Данные по жанрам'):
         st.write(datagenre)
     if st.checkbox("Данные по актерам"):
