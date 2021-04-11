@@ -69,7 +69,7 @@ with st.echo(code_location='below'):
     pog_world = pog[pog["country"] != 'India']
     st.write(
         "В данном датасете я разделю индийский кинематограф и кинематограф остального мира для получения более нормальных результатов")
-    which = st.multiselect('Select which cinematography do you prefer(SELECT ONLY ONE!):', ('Indian', 'Other world'))
+    which = st.selectbox('Select which cinematography do you prefer', ('Indian', 'Other world'))
 
     try:
         if which[0] == "Indian":
