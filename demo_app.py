@@ -8,6 +8,7 @@ import plotly.graph_objs as go
 with st.echo(code_location='below'):
 
     st.title("Netfix Movies and TVshows")
+    st.write("Данный дэшборд направлен на ознакомление с информацией о фильмах и сериалах размещенных на платформе Netflix. Для получения информации о рейтингах были так же задействоавны данные с IMDb.")
     df = pd.read_csv("netflix_titles.csv")
     dg = pd.read_csv("IMDb ratings.csv")
     dh = pd.read_csv("IMDb movies.csv")
@@ -39,6 +40,9 @@ with st.echo(code_location='below'):
     #all_colors = list(plt.cm.colors.cnames.keys())
     #c = random.choices(all_colors, k=n)
     ### END FROM
+    st.title("Рейтинг топ 10 фильмов в зависимости от года выпуска.")
+    st.write("Здесь вы можете выбрать год выпуска фильма в период от 1946 года до 2021(все имеющиеся актуальные данные на Netflix) и узнать наилучшие фильмы имеющиеся на "
+             "этом сервисе.")
     fig, ax = plt.subplots()
     ax.bar(a, b, color=c, width=0.5)
     for item in ([ax.title, ax.xaxis.label] +
@@ -57,19 +61,24 @@ with st.echo(code_location='below'):
         marker=dict(size=pog['rawdur'] / 10)
     )]
     layout = go.Layout(
-        title='year vs rating, размер шарика в зависимости от длительности фильма',
-        xaxis=dict(title='Year'),
-        yaxis=dict(title='rating'),
+        title='Все фильмы и сериалы имеющиеся на Netflix',
+        xaxis=dict(title='Год выпуска'),
+        yaxis=dict(title='Рейтинг'),
         hovermode='closest'
     )
+    st.write("Данный график показывает множество интересных зависимостей. Во первых, чтобы было понятнее, размер шарика на графике показывает его длительность, распределены шарики в соотсветствии со своим годом выпуска и рейтингом. Чтобы узнать, конкретный период или инетерсующий вас разброс"
+             "рейтинга, можно выделить область на графике и посмотреть в приближенном варианте."
+             "Можно заметить, что большинство фильмов сосредоточено ближе к текущему году, и старые фильмы с низким рейтингом также в большинстве своем отсутствуют. Это говорит о том, что политика Netflix ориентирована на современную молодежь"
+             "Также, можно заметить, что в среднем длительность фильмов упала к текущему году, это говорит о более высокой клиповости мышления у современной аудитории")
     #
     fug = go.Figure(data=data, layout=layout)
     st.plotly_chart(fug)
     pog_indian = pog[pog["country"] == 'India']
     pog_world = pog[pog["country"] != 'India']
-    st.write(
-        "В данном датасете я разделю индийский кинематограф и кинематограф остального мира для получения более нормальных результатов")
-    which = st.multiselect('Select which cinematography do you prefer', ('Indian', 'Other world'))
+    st.title(
+        "В дальнейших данных я решил разделить индийский кинематограф и кинематограф остального мира для получения более адеквавтной выборки для целевой аудитории данного дэшборда"
+        ", но если есть фанаты Индийского кино, то наслаждайтесь")
+    which = st.multiselect('Выбери предпочитаемый кинематограф(Только один!!!)', ('Indian', 'Other world'))
 
     try:
         if which[0] == "Indian":
@@ -167,11 +176,11 @@ with st.echo(code_location='below'):
         pass
 
 
-    if st.checkbox('дата жанров'):
+    if st.checkbox('Данные по жанрам'):
         st.write(datagenre)
-    if st.checkbox("Если хочется raw data, DATA TOPACTORS"):
+    if st.checkbox("Данные по актерам"):
         st.write(pogchamp)
-    if st.checkbox("Нажми сюда и я покажу тебе данные бро (raw data)"):
+    if st.checkbox("Просто исходные данные"):
         st.write(pog)
 
 
