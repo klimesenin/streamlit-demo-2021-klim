@@ -177,9 +177,9 @@ with st.echo(code_location='below'):
     st.title("Для тех, кому интересно какие актеры сыграли в наибольшем количестве фильмов на Netflix можете глянуть, они также разделены на индусов и остальнйо мир")
     try:
         sns.set(font_scale=1)
-        f2, ax = plt.subplots(figsize=(10, 30))
+        f2, ax = plt.subplots(figsize=(6, 15))
         colors_cw = sns.color_palette('magma', len(pogchamp['Times in movie'].tolist()))
-        sns.barplot(pogchamp.index, pogchamp['Times in movie'], palette=colors_cw[::-1])
+        sns.barplot(pogchamp['Times in movie'],pogchamp.index, palette=colors_cw[::-1])
         Text = ax.set(xlabel='nya ichi ni san', title='nya arigato')
         st.pyplot(f2)
     except NameError:
