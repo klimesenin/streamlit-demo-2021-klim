@@ -32,12 +32,13 @@ with st.echo(code_location='below'):
 
     a = np.array(toptitle)
     b = np.array(toprate)
-    c = list(plt.cm.colors.cnames.keys())[:10]
-    # СПИЗЖЕНО
+    c = list(plt.cm.colors.cnames.keys())[10:20]
+
+    ### FROM:
     #n = toptitle.__len__() + 1
     #all_colors = list(plt.cm.colors.cnames.keys())
     #c = random.choices(all_colors, k=n)
-    # ЗАКОНЧИЛ ПИЗДИТЬ
+    ### END FROM
     fig, ax = plt.subplots()
     ax.bar(a, b, color=c, width=0.5)
     for item in ([ax.title, ax.xaxis.label] +
@@ -165,7 +166,7 @@ with st.echo(code_location='below'):
     except NameError:
         pass
 
-    st.write(pog)
+
     if st.checkbox('дата жанров'):
         st.write(datagenre)
     if st.checkbox("Если хочется raw data, DATA TOPACTORS"):
